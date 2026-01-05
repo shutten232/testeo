@@ -544,5 +544,55 @@ small{display:block;color:rgba(255,255,255,.75);line-height:1.45;margin-top:10px
   /* opcional: esconder hint de scroll que ocupa lugar */
   .curtainHint{ display:none; }
 }
+@media (max-width: 520px){
+  .payMarquee{
+    max-width: 360px;
+    margin: 14px auto 18px;
+  }
+
+  /* 2x2 en vez de 1 columna */
+  .payTrack{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    justify-items: center;
+  }
+
+  .payItem{
+    width: 100%;
+    height: 64px;
+    border-radius: 14px;
+  }
+
+  /* tamaños de logo afinados para mobile */
+  .pay-naranja{   background-size: 78%; }
+  .pay-cordobesa{ background-size: 86%; }
+  .pay-visa{      background-size: 68%; }
+  .pay-master{    background-size: 76%; }
+}
+@media (max-width: 520px){
+  .topbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .brandLogo{ height: 34px; }
+
+  /* botón compacto + sin salto de línea */
+  .siteHeader .btn{
+    padding: 10px 12px;
+    font-size: 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+    line-height: 1;
+  }
+}
+@media (max-width: 520px){
+  .wa{ right: 12px; bottom: 12px; }
+  .wa .label{ display:none; }  /* deja solo el círculo WA */
+}
+
 
 

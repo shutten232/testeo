@@ -503,4 +503,46 @@ small{display:block;color:rgba(255,255,255,.75);line-height:1.45;margin-top:10px
   .pay-visa{      background-size: 44%; }
   .pay-master{    background-size: 78%; }
 }
+/* ===== Mobile landscape: evitar hero cortado ===== */
+@media (max-width: 920px) and (max-height: 520px){
+  /* el hero no puede ocupar todo el alto real */
+  .curtainHero{ height: 86vh; }
+
+  /* el contenido del hero puede scrollear si no entra */
+  .curtainInner{
+    align-items: start;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    overflow: auto;
+  }
+
+  /* achicamos un poco el card y el título */
+  .curtainCard{
+    padding: 18px 18px;
+    border-radius: 22px;
+    max-width: 960px;
+  }
+
+  .curtainH1{
+    font-size: clamp(26px, 5.2vw, 40px);
+    margin-bottom: 8px;
+  }
+
+  .curtainP{
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  /* pagos + botones más compactos */
+  .payMarquee{ margin: 14px auto 16px; }
+  .payItem{ width: 150px; height: 70px; }
+
+  .curtainActions{
+    gap: 10px;
+  }
+
+  /* opcional: esconder hint de scroll que ocupa lugar */
+  .curtainHint{ display:none; }
+}
+
 

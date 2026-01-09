@@ -593,6 +593,24 @@ small{display:block;color:rgba(255,255,255,.75);line-height:1.45;margin-top:10px
   .wa{ right: 12px; bottom: 12px; }
   .wa .label{ display:none; }  /* deja solo el círculo WA */
 }
+/* ====== REVEAL GLOBAL (index) ====== */
+.reveal{
+  opacity:0;
+  transform:translateY(18px);
+  filter:blur(6px);
+  transition:opacity .65s ease, transform .65s ease, filter .65s ease;
+  will-change: opacity, transform, filter;
+}
+
+.reveal.isVisible{
+  opacity:1;
+  transform:translateY(0);
+  filter:blur(0);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .reveal{transition:none; transform:none; filter:none; opacity:1}
+}
 
 
 

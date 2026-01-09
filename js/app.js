@@ -80,3 +80,16 @@
     window.open(url, '_blank', 'noopener');
   });
 })();
+(() => {
+  const els = document.querySelectorAll(".reveal");
+  if (!els.length) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add("isVisible");
+    });
+  }, { threshold: 0.12 });
+
+  els.forEach(el => io.observe(el));
+})();
+

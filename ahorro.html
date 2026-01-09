@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Simulá tu ahorro · Quiroga GNC</title>
 
-  <!-- Usa el mismo CSS del sitio para que el header/botones se vean igual -->
   <link rel="stylesheet" href="./css/style.css" />
 
-  <!-- Estilos SOLO del simulador (namespaced para no romper tu web) -->
   <style>
     body.simBody{
       margin:0;
@@ -23,12 +21,17 @@
     .simWrap{max-width:1100px; margin:0 auto; padding:24px}
     .simGrid{
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
+      grid-template-columns: 1.15fr .85fr; /* izquierda inputs / derecha resultados */
       gap:16px;
       align-items:start;
       margin-top:18px;
     }
-    @media (max-width: 920px){ .simGrid{grid-template-columns:1fr} }
+    @media (max-width: 920px){
+      .simGrid{grid-template-columns:1fr}
+      .simOrderInputs{order:1}
+      .simOrderResults{order:2}
+      .simOrderAction{order:3}
+    }
 
     .simCard{
       background:rgba(255,255,255,.08);
@@ -104,7 +107,7 @@
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:12px;
-      margin-top:14px;
+      margin-top:0;
     }
     @media (max-width: 720px){ .simKpis{grid-template-columns:1fr} }
 
@@ -140,15 +143,6 @@
     .simFillGnc{background:rgba(255,193,7,.70)}
 
     .simSideStack{display:flex; flex-direction:column; gap:16px}
-    .simMiniRow{
-      display:flex; justify-content:space-between; align-items:center;
-      padding:10px 0;
-      border-bottom:1px dashed rgba(255,255,255,.14);
-      gap:12px;
-    }
-    .simMiniRow:last-child{border-bottom:0}
-    .simMiniKey{color:rgba(255,255,255,.72); font-size:13px}
-    .simMiniVal{font-weight:1000}
 
     .simFoot{
       margin-top:14px;
@@ -167,7 +161,6 @@
 
 <body class="simBody">
 
-  <!-- HEADER + NAV (mismo estilo que tu sitio) -->
   <header class="siteHeader">
     <div class="wrap">
       <div class="topbar">
@@ -192,7 +185,9 @@
 
   <main class="simWrap">
     <div class="simGrid">
-      <section class="simCard" aria-label="Simulador">
+
+      <!-- IZQUIERDA: INPUTS -->
+      <section class="simCard simOrderInputs" aria-label="Simulador">
         <div class="simCardHeader">
           <h2>Simulador de ahorro</h2>
           <p>Mové la barra de km y compará Nafta vs GNC.</p>
@@ -205,10 +200,11 @@
               <div class="simMini" id="kmNote">ida y vuelta</div>
             </div>
 
-            <input id="kmRange" class="simRange" type="range" min="0" max="1200" step="10" value="120" />
+            <!-- km hasta 5000 -->
+            <input id="kmRange" class="simRange" type="range" min="0" max="5000" step="50" value="500" />
 
             <div class="simTicks">
-              <span>0</span><span>300</span><span>600</span><span>900</span><span>1200+</span>
+              <span>0</span><span>1250</span><span>2500</span><span>3750</span><span>5000+</span>
             </div>
 
             <div class="simRow" style="margin:10px 0 0">
@@ -218,7 +214,7 @@
               </div>
               <div style="flex:1;min-width:220px">
                 <label class="simLabel" for="kmManual">Editar km manual (opcional)</label>
-                <input class="simInput" id="kmManual" type="number" min="0" step="10" inputmode="numeric" placeholder="Ej: 120" />
+                <input class="simInput" id="kmManual" type="number" min="0" step="50" inputmode="numeric" placeholder="Ej: 500" />
               </div>
             </div>
           </div>
@@ -242,7 +238,6 @@
             </div>
           </div>
 
-          <!-- BOTONES con clase .btn de tu web -->
           <div class="simRow" style="margin-top:12px">
             <button class="btn" id="btnCalc" type="button">CALCULAR</button>
             <button class="btn secondary" id="btnReset" type="button">RESET</button>
@@ -250,77 +245,65 @@
           </div>
 
           <div id="warnBox" class="simWarn"></div>
-
-          <div class="simKpis">
-            <div class="simKpi simBlue">
-              <div class="simKpiLabel">Costo a Nafta</div>
-              <div class="simKpiValue" id="outNafta">$0</div>
-              <div class="simKpiNote" id="outNaftaNote">—</div>
-            </div>
-            <div class="simKpi simAccent">
-              <div class="simKpiLabel">Costo a GNC</div>
-              <div class="simKpiValue" id="outGnc">$0</div>
-              <div class="simKpiNote" id="outGncNote">—</div>
-            </div>
-            <div class="simKpi simOk" id="kpiSave">
-              <div class="simKpiLabel">Ahorro estimado</div>
-              <div class="simKpiValue" id="outAhorro">$0</div>
-              <div class="simKpiNote" id="outAhorroNote">—</div>
-            </div>
-            <div class="simKpi" id="kpiPct">
-              <div class="simKpiLabel">% de ahorro</div>
-              <div class="simKpiValue" id="outPct">0%</div>
-              <div class="simKpiNote" id="outPctNote">—</div>
-            </div>
-          </div>
-
-          <div class="simBars" aria-label="Comparación visual">
-            <div class="simBar">
-              <div class="simBarTop"><span>Nafta</span><b id="barNaftaVal">$0</b></div>
-              <div class="simFill simFillNafta" id="barNafta"></div>
-            </div>
-            <div class="simBar">
-              <div class="simBarTop"><span>GNC</span><b id="barGncVal">$0</b></div>
-              <div class="simFill simFillGnc" id="barGnc"></div>
-            </div>
-          </div>
-
-          <div class="simFoot">
-            <span>Estimación orientativa. El consumo real depende del auto y el uso.</span>
-            <a href="https://wa.me/5493512174455?text=Hola%20Hago%20____%20km%20por%20semana%20y%20tengo%20____.%20Quiero%20cotizar%20GNC" target="_blank" rel="noopener">
-              Pedir cotización por WhatsApp
-            </a>
-          </div>
         </div>
       </section>
 
+      <!-- DERECHA: RESULTADOS (lo de la captura) + CTA -->
       <aside class="simSideStack">
-        <section class="simCard" aria-label="Resumen rápido">
+
+        <!-- RESULTADOS A LA DERECHA -->
+        <section class="simCard simOrderResults" aria-label="Resultados">
           <div class="simCardHeader">
-            <h2>Resumen rápido</h2>
-            <p>Lo que el cliente entiende rápido.</p>
+            <h2>Resultados</h2>
+            <p>Comparación clara para decidir rápido.</p>
           </div>
+
           <div class="simCardBody">
-            <div class="simMiniRow">
-              <div class="simMiniKey">Km totales</div>
-              <div class="simMiniVal" id="sideKm">—</div>
+            <div class="simKpis">
+              <div class="simKpi simBlue">
+                <div class="simKpiLabel">Costo a Nafta</div>
+                <div class="simKpiValue" id="outNafta">$0</div>
+                <div class="simKpiNote" id="outNaftaNote">—</div>
+              </div>
+              <div class="simKpi simAccent">
+                <div class="simKpiLabel">Costo a GNC</div>
+                <div class="simKpiValue" id="outGnc">$0</div>
+                <div class="simKpiNote" id="outGncNote">—</div>
+              </div>
+              <div class="simKpi simOk" id="kpiSave">
+                <div class="simKpiLabel">Ahorro estimado</div>
+                <div class="simKpiValue" id="outAhorro">$0</div>
+                <div class="simKpiNote" id="outAhorroNote">—</div>
+              </div>
+              <div class="simKpi" id="kpiPct">
+                <div class="simKpiLabel">% de ahorro</div>
+                <div class="simKpiValue" id="outPct">0%</div>
+                <div class="simKpiNote" id="outPctNote">—</div>
+              </div>
             </div>
-            <div class="simMiniRow">
-              <div class="simMiniKey">1L Nafta</div>
-              <div class="simMiniVal" id="sideNafta">$—</div>
+
+            <div class="simBars" aria-label="Comparación visual">
+              <div class="simBar">
+                <div class="simBarTop"><span>Nafta</span><b id="barNaftaVal">$0</b></div>
+                <div class="simFill simFillNafta" id="barNafta"></div>
+              </div>
+              <div class="simBar">
+                <div class="simBarTop"><span>GNC</span><b id="barGncVal">$0</b></div>
+                <div class="simFill simFillGnc" id="barGnc"></div>
+              </div>
             </div>
-            <div class="simMiniRow">
-              <div class="simMiniKey">1m³ GNC</div>
-              <div class="simMiniVal" id="sideGnc">$—</div>
-            </div>
-            <div class="simMiniRow">
-              <div class="simMiniKey">Costo por 100km (nafta vs gnc)</div>
-              <div class="simMiniVal" id="side100">—</div>
+
+            <div class="simFoot">
+              <span>Estimación orientativa. El consumo real depende del auto y el uso.</span>
+              <a href="https://wa.me/5493512174455?text=Hola%20Hago%20____%20km%20por%20semana%20y%20tengo%20____.%20Quiero%20cotizar%20GNC" target="_blank" rel="noopener">
+                Pedir cotización por WhatsApp
+              </a>
             </div>
           </div>
         </section>
 
-        <section class="simCard" aria-label="Acción">
+        <!-- ACCIÓN (se queda) -->
+        <section class="simCard simOrderAction" aria-label="Acción">
           <div class="simCardHeader">
             <h2>¿Querés que te lo calculemos con tu auto?</h2>
             <p>Mandá modelo + km por semana y te damos una estimación mejor.</p>
@@ -333,11 +316,11 @@
             </a>
           </div>
         </section>
+
       </aside>
     </div>
   </main>
 
-  <!-- FOOTER (mismo que tu sitio, con sedes + teléfono real) -->
   <footer id="contacto">
     <div class="wrap">
       <div class="foot">
@@ -371,6 +354,7 @@
   <script>
     const $ = (id)=>document.getElementById(id);
     const STORAGE_KEY = "qgnc_slider_ahorro_v1";
+    const KM_MAX = 5000;
 
     const fmtARS = (n) => {
       if (!isFinite(n)) return "—";
@@ -418,32 +402,11 @@
       return { km, viajes, naftaPrecio, naftaCons, gncPrecio, gncCons };
     }
 
-    function writeSide(d){
-      const kmTotal = (Number(d.km) || 0) * (Number(d.viajes) || 1);
-
-      $("sideKm").textContent = kmTotal > 0 ? (fmtNum(kmTotal,0) + " km") : "—";
-      $("sideNafta").textContent = (Number(d.naftaPrecio) > 0) ? fmtARS(Number(d.naftaPrecio)) : "$—";
-      $("sideGnc").textContent = (Number(d.gncPrecio) > 0) ? fmtARS(Number(d.gncPrecio)) : "$—";
-
-      const naftaPrecio = Number(d.naftaPrecio);
-      const naftaCons   = Number(d.naftaCons);
-      const gncPrecio   = Number(d.gncPrecio);
-      const gncCons     = Number(d.gncCons);
-
-      if (naftaPrecio > 0 && naftaCons > 0 && gncPrecio > 0 && gncCons > 0){
-        const cNafta100 = naftaCons * naftaPrecio;
-        const cGnc100   = gncCons * gncPrecio;
-        $("side100").textContent = fmtARS(cNafta100) + " vs " + fmtARS(cGnc100);
-      } else {
-        $("side100").textContent = "Completá precios y consumos";
-      }
-    }
-
     function calc(){
       const d = read();
 
       $("kmOut").textContent = fmtNum(d.km,0);
-      $("kmManual").value = String(Math.round(d.km/10)*10);
+      $("kmManual").value = String(Math.round(d.km/50)*50);
 
       const missing = [];
       if (!(d.naftaPrecio > 0)) missing.push("precio nafta");
@@ -501,7 +464,6 @@
       $("barNaftaVal").textContent = fmtARS(costoNafta);
       $("barGncVal").textContent = fmtARS(costoGnc);
 
-      writeSide(d);
       save(d);
     }
 
@@ -511,7 +473,7 @@
 
     function load(){
       const defaults = {
-        km: 120,
+        km: 500,
         viajes: "",
         naftaPrecio: 1200,
         naftaCons: 8.5,
@@ -524,7 +486,7 @@
         if (raw) d = Object.assign({}, defaults, JSON.parse(raw));
       }catch(e){}
 
-      $("kmRange").value = d.km ?? 120;
+      $("kmRange").value = d.km ?? 500;
       $("viajes").value = d.viajes ?? "";
       $("naftaPrecio").value = d.naftaPrecio ?? 1200;
       $("naftaCons").value = d.naftaCons ?? 8.5;
@@ -539,7 +501,7 @@
 
     function resetAll(){
       localStorage.removeItem(STORAGE_KEY);
-      $("kmRange").value = 120;
+      $("kmRange").value = 500;
       $("viajes").value = "";
       $("naftaPrecio").value = 1200;
       $("naftaCons").value = 8.5;
@@ -553,7 +515,7 @@
     $("kmManual").addEventListener("input", ()=>{
       const v = parseFloat($("kmManual").value || "0");
       if (isFinite(v)){
-        const clamped = Math.max(0, Math.min(1200, Math.round(v/10)*10));
+        const clamped = Math.max(0, Math.min(KM_MAX, Math.round(v/50)*50));
         $("kmRange").value = clamped;
         calc();
       }

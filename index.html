@@ -12,9 +12,15 @@
 <header class="siteHeader">
   <div class="wrap">
     <div class="topbar">
+
       <div class="brand">
         <img class="brandLogo" src="./cropped-quirgrouplogo-200x56 (1).png" alt="Quirgroup GNC" />
       </div>
+
+      <!-- BOTÓN MENU MOBILE -->
+      <button class="navToggle" id="navToggle" type="button" aria-controls="nav" aria-expanded="false" aria-label="Abrir menú">
+        ☰
+      </button>
 
       <nav id="nav" class="mainNav" aria-label="Navegación principal">
         <a href="#equipos">EQUIPOS</a>
@@ -33,6 +39,7 @@
 
 <main>
 
+  <!-- HERO PRINCIPAL -->
   <section class="curtain" id="equipos" aria-label="Hero principal">
     <section class="curtainHero" id="curtainHero">
       <video class="curtainVideo" autoplay muted loop playsinline preload="metadata">
@@ -62,15 +69,16 @@
             </div>
 
             <div class="curtainActions">
-              <a class="btn" href="./ahorro.html" target="_blank" rel="noopener">
-                Calculá tu ahorro
-              </a>              
-              <a class="btn secondary" href="https://wa.me/5493512174455?text=Hola%20quiero%20sacar%20turno" target="_blank" rel="noopener">
-                SOLICITAR TURNO
-              </a>
+              <a class="btn" href="./ahorro.html" target="_blank" rel="noopener">Calculá tu ahorro</a>
+              <a class="btn secondary" href="https://wa.me/5493512174455?text=Hola%20quiero%20sacar%20turno" target="_blank" rel="noopener">SOLICITAR TURNO</a>
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="curtainHint" aria-hidden="true">
+        <div class="curtainMouse"></div>
+        <span>SCROLL</span>
       </div>
     </section>
 
@@ -79,8 +87,8 @@
         <div class="wrap wrapWide">
           <div class="curtainPanelCard">
             <h2>Renovaciones de obleas</h2>
-            <p>Turnos rápidos, Verificacion de vehiculo y gestion en el dia.</p>
-            <a class="btn" href="https://wa.me/5493512174455?text=Hola%20quiero%20consultar%20por%20obleas%20GNC" target="_blank" rel="noopener">COTIZAR</a>
+            <p>Turnos rápidos, verificación y gestión en el día.</p>
+            <a class="btn" href="https://wa.me/5493512174455?text=Hola%20quiero%20consultar%20por%20oblea%20GNC" target="_blank" rel="noopener">COTIZAR</a>
           </div>
         </div>
       </article>
@@ -89,8 +97,8 @@
         <div class="wrap wrapWide">
           <div class="curtainPanelCard">
             <h2>Prueba hidráulica</h2>
-            <p>Revisión completa del cilindro, normativa vigente y gestion en el dia.</p>
-            <a class="btn secondary" href="https://wa.me/5493512174455?text=Hola%20quiero%20reservar%20prueba%20hidraulica" target="_blank" rel="noopener">Cotizar</a>
+            <p>Revisión del cilindro, normativa vigente y gestión en el día.</p>
+            <a class="btn secondary" href="https://wa.me/5493512174455?text=Hola%20quiero%20reservar%20prueba%20hidraulica" target="_blank" rel="noopener">RESERVAR</a>
           </div>
         </div>
       </article>
@@ -114,6 +122,7 @@
     </div>
   </section>
 
+  <!-- COTIZACIÓN -->
   <section class="hero" id="cotizacion" data-hero="cotizacion">
     <video class="heroMedia" autoplay muted loop playsinline preload="metadata">
       <source src="./videos/VIDEO8.mp4" type="video/mp4">
@@ -166,7 +175,97 @@
     </div>
   </section>
 
-  <!-- RESTO DE SECCIONES IGUAL QUE ANTES -->
+  <!-- SERVICIOS (bloque) -->
+  <section class="section alt" aria-labelledby="t-servicios">
+    <div class="wrap">
+      <h2 id="t-servicios" class="title">Servicios de GNC</h2>
+      <p class="subtitle">Beneficios claros para que el cliente decida rápido.</p>
+      <div class="cards">
+        <div class="card"><div class="icon">🪪</div><h3>Renovación de obleas</h3><p>Control y asesoramiento para circular tranquilo.</p></div>
+        <div class="card"><div class="icon">🧪</div><h3>Pruebas hidráulicas</h3><p>Control del cilindro y seguridad.</p></div>
+        <div class="card"><div class="icon">⚙️</div><h3>Regulación</h3><p>Ajuste para funcionamiento parejo.</p></div>
+        <div class="card"><div class="icon">🛠️</div><h3>Diagnóstico</h3><p>Pérdidas, mantenimiento y reparación.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTALACIONES (NO FALTA) -->
+  <section class="hero" id="instalaciones" data-hero="instalaciones">
+    <video class="heroMedia" autoplay muted loop playsinline preload="metadata">
+      <source src="./videos/VIDEO1.mp4" type="video/mp4">
+    </video>
+
+    <div class="heroInner">
+      <div class="wrap">
+        <div class="heroGrid">
+          <div>
+            <h1>Instalación prolija y segura.</h1>
+            <p>Trabajo rápido, prolijo y con control técnico. Vehículos particulares y de trabajo.</p>
+            <div class="chips">
+              <div class="chip">Instalación</div>
+              <div class="chip">Calibración</div>
+              <div class="chip">Entrega en horario</div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;align-items:end;">
+            <a class="btn" href="https://wa.me/5493512174455?text=Hola%20quiero%20consultar%20por%20instalaciones%20GNC" target="_blank" rel="noopener">CONSULTAR</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="t-incluye">
+    <div class="wrap">
+      <h2 id="t-incluye" class="title">Qué incluye</h2>
+      <p class="subtitle">Lo mínimo que un cliente entiende y valora.</p>
+      <div class="cards">
+        <div class="card"><div class="icon">🔩</div><h3>Colocación</h3><p>Montaje prolijo y seguro.</p></div>
+        <div class="card"><div class="icon">🧯</div><h3>Control</h3><p>Chequeo de pérdidas y funcionamiento.</p></div>
+        <div class="card"><div class="icon">📐</div><h3>Calibración</h3><p>Regulación para uso diario.</p></div>
+        <div class="card"><div class="icon">🧾</div><h3>Entrega clara</h3><p>Explicación y recomendaciones.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REPARACIONES (NO FALTA) -->
+  <section class="hero" id="servicios" data-hero="reparaciones">
+    <video class="heroMedia" autoplay muted loop playsinline preload="metadata">
+      <source src="./videos/VIDEO7.mp4" type="video/mp4">
+    </video>
+
+    <div class="heroInner">
+      <div class="wrap">
+        <div class="heroGrid">
+          <div>
+            <h1>Reparaciones y servicio.</h1>
+            <p>Diagnóstico, pérdidas, regulación y mantenimiento. Sin vueltas.</p>
+            <div class="chips">
+              <div class="chip">Diagnóstico</div>
+              <div class="chip">Pérdidas</div>
+              <div class="chip">Mantenimiento</div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;align-items:end;">
+            <a class="btn" href="https://wa.me/5493512174455?text=Hola%20quiero%20sacar%20turno%20para%20servicio%20GNC" target="_blank" rel="noopener">SACAR TURNO</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" aria-labelledby="t-maspedidos">
+    <div class="wrap">
+      <h2 id="t-maspedidos" class="title">Servicios más pedidos</h2>
+      <p class="subtitle">Lo que un cliente busca cuando el auto falla o pierde.</p>
+      <div class="cards">
+        <div class="card"><div class="icon">🔍</div><h3>Diagnóstico</h3><p>Te decimos qué pasa y qué conviene hacer.</p></div>
+        <div class="card"><div class="icon">💨</div><h3>Pérdidas</h3><p>Detección y corrección.</p></div>
+        <div class="card"><div class="icon">⚙️</div><h3>Regulación</h3><p>Auto parejo, sin tironeos.</p></div>
+        <div class="card"><div class="icon">🧰</div><h3>Preventivo</h3><p>Antes de viajar, dejalo listo.</p></div>
+      </div>
+    </div>
+  </section>
 
 </main>
 
@@ -200,14 +299,34 @@
   </div>
 </footer>
 
-<!-- BOTÓN DE WHATSAPP FIJO -->
-<a class="btn-whatsapp-fixed"
-   href="https://wa.me/5493512174455?text=Hola,%20quiero%20consultar%20sobre%20equipos%20y%20ahorro"
-   target="_blank" rel="noopener">
-  <img src="./img/WhatsApp.svg.png" alt="WhatsApp" class="whatsapp-icon">
-  <span class="whatsapp-text">Chateá por WhatsApp</span>
+<a class="wa" href="https://wa.me/5493512174455?text=Hola%20quiero%20cotizar%20GNC" target="_blank" rel="noopener">
+  <div class="bubble">WA</div>
+  <div class="label">Cotizá por WhatsApp</div>
 </a>
 
 <script src="./js/app.js"></script>
+
+<!-- Toggle de menú mobile (si no querés tocar app.js, queda acá) -->
+<script>
+  (function(){
+    const btn = document.getElementById("navToggle");
+    const nav = document.getElementById("nav");
+    if(!btn || !nav) return;
+
+    function closeNav(){
+      document.body.classList.remove("navOpen");
+      btn.setAttribute("aria-expanded","false");
+    }
+
+    btn.addEventListener("click", ()=>{
+      const open = document.body.classList.toggle("navOpen");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+
+    nav.querySelectorAll("a").forEach(a=>a.addEventListener("click", closeNav));
+    window.addEventListener("resize", ()=>{ if(window.innerWidth > 920) closeNav(); });
+  })();
+</script>
+
 </body>
 </html>

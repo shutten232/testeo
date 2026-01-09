@@ -156,6 +156,13 @@
       align-items:center;
     }
     .simFoot a{color:rgba(255,255,255,.85)}
+
+    /* Botón volver: usa .btn de tu CSS, esto solo ajusta tamaño en mobile */
+    .simBackRow{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .simBackRow .btn{white-space:nowrap}
+    @media (max-width: 720px){
+      .simBackRow .btn{padding:10px 12px}
+    }
   </style>
 </head>
 
@@ -164,9 +171,11 @@
   <header class="siteHeader">
     <div class="wrap">
       <div class="topbar">
-        <div class="brand">
+
+        <!-- LOGO CLICKEABLE: vuelve al index -->
+        <a class="brand" href="./index.html" aria-label="Volver al inicio">
           <img class="brandLogo" src="./cropped-quirgrouplogo-200x56 (1).png" alt="Quirgroup GNC" />
-        </div>
+        </a>
 
         <nav id="nav" class="mainNav" aria-label="Navegación principal">
           <a href="./index.html#equipos">EQUIPOS</a>
@@ -189,8 +198,14 @@
       <!-- IZQUIERDA: INPUTS -->
       <section class="simCard simOrderInputs" aria-label="Simulador">
         <div class="simCardHeader">
-          <h2>Simulador de ahorro</h2>
-          <p>Mové la barra de km y compará Nafta vs GNC.</p>
+          <div class="simBackRow">
+            <!-- BOTÓN VOLVER -->
+            <a class="btn secondary" href="./index.html" aria-label="Volver a la página principal">VOLVER</a>
+            <div>
+              <h2 style="margin:0">Simulador de ahorro</h2>
+              <p style="margin:6px 0 0">Mové la barra de km y compará Nafta vs GNC.</p>
+            </div>
+          </div>
         </div>
 
         <div class="simCardBody">
@@ -509,13 +524,11 @@
       calc();
     }
 
-    // Slider: sincroniza kmManual SOLO cuando movés la barra
     $("kmRange").addEventListener("input", ()=>{
       $("kmManual").value = $("kmRange").value;
       calc();
     });
 
-    // Km manual: acepta 1200 / 1.200 / 1,200 y no se pisa mientras tipeás
     $("kmManual").addEventListener("input", ()=>{
       const raw = ($("kmManual").value || "").toString();
       const cleaned = raw.replace(/[^\d]/g, "");

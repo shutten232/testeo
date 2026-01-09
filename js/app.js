@@ -76,7 +76,7 @@
       mensaje ? `Mensaje: ${mensaje}` : null
     ].filter(Boolean);
 
-    const url = 'https://wa.me/5493510000000?text=' + encodeURIComponent(lines.join('\n'));
+    const url = 'https://wa.me/5493512174455?text=' + encodeURIComponent(lines.join('\n'));
     window.open(url, '_blank', 'noopener');
   });
 })();

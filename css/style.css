@@ -611,6 +611,38 @@ small{display:block;color:rgba(255,255,255,.75);line-height:1.45;margin-top:10px
 @media (prefers-reduced-motion: reduce){
   .reveal{transition:none; transform:none; filter:none; opacity:1}
 }
+/* BOTÓN DE WHATSAPP FIJO Y DESTACADO */
+.btn-whatsapp-fixed {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    padding: 14px 18px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 9999;
+    transition: transform 0.23s ease-in-out, background-color 0.23s ease-in-out;
+}
+
+.btn-whatsapp-fixed:hover {
+    background-color: #1ebe5d;
+    transform: scale(1.07);
+}
+
+.whatsapp-icon {
+    width: 28px;
+    margin-right: 12px;
+}
+
+.whatsapp-text {
+    white-space: nowrap;
+}
 
 
 
